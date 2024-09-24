@@ -8,12 +8,14 @@ function App() {
   return (
     <div className="App">
       <Router>
-        <Link to='/createpost'> Create a Post! </Link>
+        <div className ="navbar">
+        <Link to='/createpost'> Create a Post </Link>
         <Link to='/'> Home Page </Link>
-
+        </div>
         <Routes>
           <Route path="/" element= {<Home/>} />
           <Route path="/createpost" element = {<CreatePost/>} />
+          <Route path="/" element= {<CreatePost />} />
         </Routes>
       </Router>
     </div>
