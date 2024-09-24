@@ -15,7 +15,7 @@ const commentsRouter = require("./routes/Comments");
 app.use("/comments", commentsRouter);
 
 //Connect to database
-db.sequelize.sync({force:true}).then(() => {
+db.sequelize.sync().then(() => {
     app.listen(3001, () => {
         console.log("Server runing on port 3001.");
     });
