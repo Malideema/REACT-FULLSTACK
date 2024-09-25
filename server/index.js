@@ -15,7 +15,7 @@ const commentsRouter = require("./routes/Comments");
 app.use("/comments", commentsRouter);
 
 const usersRouter = require("./routes/Users");
-app.use("/auth", commentsRouter);
+app.use("/auth", usersRouter);
 
 
 //Connect to database
