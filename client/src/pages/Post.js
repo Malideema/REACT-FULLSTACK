@@ -5,12 +5,19 @@ import axios from 'axios';
 function Post() {
     let {id} = useParams();
     const [postObject, setPostObject] = useState({});
+    const [comments, setComments] = useState([])
 
     useEffect(() => {
-        axios.get(`http://localhost:3001/posts/byId/${id}`).then((response) =>{ 
+        axios.get(`http://localhost:3001/posts/byId/${id}`).then((response) => { 
           setPostObject(response.data);
         });
-});
+
+        axios.get(`http://localhost:3001/comments/${id}`).then((response) =>{ 
+          setComments(response.data);
+        });
+        
+    }, []);
+
   return (
     <div className="postPage">
       <div className="leftSide">
@@ -20,11 +27,20 @@ function Post() {
           <div className="footer">{postObject.username}</div>
         </div>
       </div>
+
       <div className="rightSide">
-        <h3>Comment Section</h3>
+        <div className="addCommentContainer">
+          <input type="text" placeholder="Add a comment..." autoComplete="off"/>
+          <button type="submit">Submit</button>
+        </div>
+        <div className="listOfComments">
+          {comments.map((comment, key)=> {
+            return <div className="comment"> {comment.commentBody}</div>
+          })}
+        </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default Post
+export default Post;

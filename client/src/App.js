@@ -10,7 +10,7 @@ function App() {
     <div className="App">
       <Router>
         <div className ="navbar">
-        <Link to='/createpost'> Create a Post </Link>
+        <Link to='/createpost'> Create A Post </Link>
         <Link to='/'> Home Page </Link>
         </div>
         <Routes>
