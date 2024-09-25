@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 
@@ -8,15 +8,37 @@ function Post() {
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState("");
 
-  useEffect(() => {
-    axios.get(`http://localhost:3001/posts/byId/${id}`).then((response) => {
-      setPostObject(response.data);
-    });
+  const fetchPostsHandler = useCallback(async () => { 
+    const fetchPost = async () => {
+    const response = await fetch(`/api/posts/byId/${id}`);
+    const json = await response.json();
+    response.ok && setPostObject(json);
+    };
+    const fetchComments = async () => {
+      const response = await fetch(`/api/comments/${id}`);
+      const json = await response.json();
+      response.ok && setComments(json);
+    };
 
-    axios.get(`http://localhost:3001/comments/${id}`).then((response) => {
-      setComments(response.data);
-    });
-  }, []);
+    fetchPost();
+    fetchComments();
+  }, [id]);
+
+
+    useEffect(() => {
+      fetchPostsHandler();  
+    }, [fetchPostsHandler]);
+  
+    useEffect(() => {
+      axios.get(`http://localhost:3001/posts/byId/${id}`).then((response) => {
+        setPostObject(response.data);
+      });
+  
+      axios.get(`http://localhost:3001/comments/${id}`).then((response) => {
+        setComments(response.data);
+      });
+    }, [id]);
+
 
   const addComment = () => {
     axios
