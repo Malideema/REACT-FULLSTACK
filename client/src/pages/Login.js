@@ -8,9 +8,11 @@ function Login() {
   const login = () => {
     const data = { username: username, password: password };
     axios.post("http://localhost:3001/auth/login", data).then((response) => {
-      if (response.data.error) alert(response.data.error);
+      if (response.data.error){
+         alert(response.data.error);
+      } else {
       sessionStorage.setItem("accessToken", response.data);
-    });
+      }});
   };
   return (
     <div className="loginContainer">
