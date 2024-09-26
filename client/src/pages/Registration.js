@@ -31,6 +31,7 @@ function Registration() {
 
   return (
     <div>
+      <h1>Register Here:</h1>
       <Formik initialValues={initialValues} onSubmit={onSubmit} validationSchema ={validationSchema}>
 
           <Form className="formContainer">
