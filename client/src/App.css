@@ -31,7 +31,7 @@ body {
 .post .title {
   flex: 20%;
   border-bottom: 1px solid lightgray;
-  background-color: dodgerblue;
+  background-color: hotpink;
   display: grid;
   place-content: center;
   color: white;
