@@ -62,6 +62,8 @@ function Post() {
   };
 
   return (
+    <div className="container">
+      <h1 className="page-title">{postObject.username}'s Post</h1>
     <div className="postPage">
       <div className="leftSide">
         <div className="post" id="individual">
@@ -95,6 +97,7 @@ function Post() {
         </div>
       </div>
     </div>
+  </div>
   );
 }
 

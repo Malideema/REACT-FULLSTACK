@@ -19,6 +19,8 @@ function Login() {
       }});
   };
   return (
+    <div className="container">
+      <h1 className="page-title">Login</h1>
     <div className="loginContainer">
       <label>Username:</label>
       <input
@@ -37,6 +39,7 @@ function Login() {
 
       <button onClick={login}> Login </button>
     </div>
+  </div>
   );
 }
 

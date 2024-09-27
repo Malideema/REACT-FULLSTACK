@@ -31,7 +31,8 @@ function Registration() {
 
   return (
     <div>
-      <h1>Register Here:</h1>
+      <div className="container">
+      <h1 className="page-title">Registration</h1>
       <Formik initialValues={initialValues} onSubmit={onSubmit} validationSchema ={validationSchema}>
 
           <Form className="formContainer">
@@ -62,6 +63,7 @@ function Registration() {
             <button type="submit"> Register </button>
           </Form>
       </Formik>
+    </div>
     </div>
   )
 }
