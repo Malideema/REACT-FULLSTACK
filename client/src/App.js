@@ -10,22 +10,31 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 
 function App() {
-  const [authState, setAuthState] = useState(false);
+  const [authState, setAuthState] = useState({
+    username: '', 
+    id:0,
+    status: false,
+  });
 
   useEffect(()=> {
     axios.get('http://localhost:3001/auth/validate', {headers: {accessToken: localStorage.getItem('accessToken'),}})
     .then((response) => {
       if(response.data.error){
-        setAuthState(false);
+        setAuthState({...authState, status: false});
       } else {
-        setAuthState(true);
+        setAuthState({
+          username: response.data.username, 
+          id: response.data.id,
+          status: true,
+        });
       }
     });
   }, []);
 
   const logout = () => {
     localStorage.removeItem('accessToken');
-    setAuthState(false);
+    setAuthState({ username: '', 
+      id:0, status: false});
   }
 
   return (
@@ -35,13 +44,16 @@ function App() {
         <div className ="navbar"> 
         <Link to='/'> Home Page </Link>
         <Link to='/createpost'> Create A Post </Link>
-        {!authState ? (
+        {!authState.status ? (
         <>
           <Link to='/login'> Login </Link>
           <Link to='/registration'> Registration </Link>
         </>
         ) :(
-          <button onClick={logout}> Logout </button>
+          <div className="loggedInContainer">
+            <p>Welcome, {authState.username}!</p>
+            <button onClick={logout}> Logout </button>
+          </div>
         )}
         </div>
         <Routes>

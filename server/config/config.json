@@ -2,8 +2,8 @@
   "development": {
     "username": "midware",
     "password": "midware",
-    "database": "MDLW_TRN",
-    "host": "172.21.56.33",
+    "database": "mdlw_dev",
+    "host": "172.21.56.30",
     "dialect": "oracle"
   },
   "test": {
